@@ -1,17 +1,14 @@
 What to look for on a compromised machine
-below you can see that this machine is connected to a different subnet
-![[Pasted image 20230310175118.png]]
+Check the network of the machine and see if it's connected to a different subnet
 
 which means you can connect to this network using the compromised machine
 
-![[Pasted image 20230310175512.png]]
 using this command: sudo ssh -N -D 127.0.0.1:9999 sean@10.11.1.251 -fN
 you can set a port on your machine to run commands to the compromised machine by directing all traffic to your port by signing into the compromised machine ssh
 
 then you can use proxychains to run commands to the port from the compromised machine thay you have setup, which is 9999.
 You can set a port in proxychain conf file that you want to use.
 using this command to get to the config: sudo nano /etc/proxychains.conf
-![[Pasted image 20230310180032.png]]
 
 use this command to run nmap throuhg proxychains: proxychains nmap --top-ports=20 -sT -Pn 10.1.1.247
 you should be able to scan any machine on this network this way
